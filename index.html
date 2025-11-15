@@ -258,29 +258,29 @@
         .error {
             color: #ff6b6b;
             margin-left: 0;
-            padding: 12px;
-            border-left: 3px solid #ff6b6b;
-            background: rgba(255, 107, 107, 0.1);
-            border-radius: 4px;
+            padding: 0;
+            border-left: none;
+            background: transparent;
+            border-radius: 0;
         }
 
         .success {
             color: #33ff66;
             margin-left: 0;
-            padding: 12px;
-            border-left: 3px solid #33ff66;
-            background: rgba(51, 255, 102, 0.1);
-            border-radius: 4px;
+            padding: 0;
+            border-left: none;
+            background: transparent;
+            border-radius: 0;
         }
 
         .info {
-            color: #58a6ff;
+            color: #c9d1d9;
             margin-left: 0;
-            padding: 12px;
+            padding: 0;
             font-size: 0.95rem;
-            background: rgba(88, 166, 255, 0.1);
-            border-radius: 4px;
-            border-left: 3px solid #58a6ff;
+            background: transparent;
+            border-radius: 0;
+            border-left: none;
         }
 
         /* Terminal Input Area */
@@ -335,9 +335,9 @@
 
         .section-title {
             color: #33ff66;
-            font-size: 1.4rem;
+            font-size: 1rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
             text-shadow: none;
             text-transform: none;
             letter-spacing: 0;
@@ -349,44 +349,45 @@
         }
 
         .skill-item, .project-item, .cert-item, .edu-item {
-            margin: 8px 0;
-            padding: 12px 15px;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            background: #161b22;
-            transition: all 0.2s ease;
+            margin: 4px 0;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            transition: none;
         }
 
         .skill-item:hover, .project-item:hover, .cert-item:hover, .edu-item:hover {
-            background: #1c2128;
-            border-color: #33ff66;
-            transform: translateX(5px);
+            background: transparent;
+            border-color: transparent;
+            transform: none;
         }
 
         .skill-item {
-            display: inline-block;
-            margin: 5px;
-            padding: 8px 15px;
+            display: inline;
+            margin: 0;
+            padding: 0;
         }
 
         .link {
             color: #58a6ff;
             text-decoration: none;
             cursor: pointer;
-            padding: 6px 12px;
-            border: 1px solid #30363d;
-            border-radius: 4px;
-            display: inline-block;
-            margin: 3px;
-            transition: all 0.2s ease;
-            background: #161b22;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            display: inline;
+            margin: 0;
+            transition: none;
+            background: transparent;
         }
 
         .link:hover {
-            background: #1c2128;
-            border-color: #58a6ff;
+            background: transparent;
+            border-color: transparent;
             text-shadow: none;
-            transform: translateY(-1px);
+            transform: none;
+            text-decoration: underline;
         }
 
         /* ASCII Art */
@@ -408,26 +409,27 @@
 
         .help-row {
             display: flex;
-            margin: 4px 0;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-            background: #161b22;
-            border: 1px solid #30363d;
+            margin: 2px 0;
+            padding: 0;
+            border-radius: 0;
+            transition: none;
+            background: transparent;
+            border: none;
         }
 
         .help-row:hover {
-            background: #1c2128;
-            border-color: #33ff66;
-            transform: translateX(3px);
+            background: transparent;
+            border-color: transparent;
+            transform: none;
         }
 
         .help-command {
             color: #58a6ff;
             font-weight: bold;
-            width: 200px;
+            width: auto;
             flex-shrink: 0;
             font-size: 0.95rem;
+            margin-right: 20px;
         }
 
         .help-description {
@@ -451,11 +453,11 @@
         .welcome-banner {
             color: #c9d1d9;
             text-align: left;
-            padding: 20px;
-            margin: 15px 0;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            background: #161b22;
+            padding: 0;
+            margin: 10px 0;
+            border: none;
+            border-radius: 0;
+            background: transparent;
         }
 
         .welcome-banner-title {
@@ -732,232 +734,128 @@
         // Commands
         const commands = {
             help: () => {
-                return `
-<div class="info" style="line-height: 1.8;">
-<strong style="color: #33ff66;">Welcome! Here are all the available commands:</strong><br><br>
-<span style="color: #58a6ff;">01.</span>about<br>
-<span style="color: #58a6ff;">02.</span>skills<br>
-<span style="color: #58a6ff;">03.</span>education<br>
-<span style="color: #58a6ff;">04.</span>projects<br>
-<span style="color: #58a6ff;">05.</span>certifications<br>
-<span style="color: #58a6ff;">06.</span>experience<br>
-<span style="color: #58a6ff;">07.</span>contact<br>
-<span style="color: #58a6ff;">08.</span>resume<br>
-<span style="color: #58a6ff;">09.</span>github<br>
-<span style="color: #58a6ff;">10.</span>linkedin<br>
-<span style="color: #58a6ff;">11.</span>email<br>
-<span style="color: #58a6ff;">12.</span>clear<br>
-<span style="color: #58a6ff;">13.</span>banner<br>
-<span style="color: #58a6ff;">14.</span>whoami<br><br>
-<span style="color: #8b949e;">[tab]: trigger completion.</span>
-</div>`;
+                return `<div class="info">01. about
+02. skills [--data-analytics | --webdev | --tools | --programming-languages]
+03. education
+04. projects
+05. certifications
+06. experience
+07. achievements
+08. contact
+09. social
+10. resume
+11. github
+12. linkedin
+13. email
+14. ls
+15. clear
+16. banner
+17. whoami
+18. date
+19. echo [text]
+
+Type 'help' to see this menu. Use 'tab' for command completion.</div>`;
             },
 
             whoami: () => {
-                return `
-<div class="success">
-    <strong>PRODHOSH V S</strong><br>
-    First-Year CSE Student @ VITC | BS Data Science @ IIT Madras<br>
-    Interested in AI & ML<br>
-    Location: Chennai, Tamil Nadu, India<br>
-    Status: Open to internship opportunities
-</div>`;
+                return `<div class="output">PRODHOSH V S
+First-Year CSE Student @ VITC | BS Data Science @ IIT Madras
+AI/ML Member at Microsoft Innovations Club (VITC)
+Open to internship opportunities
+Location: Chennai, Tamil Nadu, India</div>`;
             },
 
             about: () => {
                 const data = portfolioData.about;
-                return `
-<div class="section-content">
-    <div class="section-title">${data.name}</div>
-    <div class="output">${data.title}</div>
-    <br>
-    <div class="output">${data.description}</div>
-    <br>
-    <div class="output"><strong>Current:</strong> ${data.current}</div>
-    <br>
-    <div class="output">${data.goal}</div>
-</div>`;
+                return `<div class="output">${data.name}
+${data.title}
+
+${data.description}
+
+Current: ${data.current}
+
+${data.goal}</div>`;
             },
 
             skills: (args) => {
                 const field = args[0] ? args[0].toLowerCase() : null;
                 
                 if (field === '--data-analytics') {
-                    let output = '<div class="output">Data Analytics<br>--------------<br><br>';
+                    let output = '<div class="output">Data Analytics:\n\n';
                     portfolioData.skills.filter(s => s.category === 'data-analytics')
                         .forEach(skill => {
-                            output += `${skill.icon} ${skill.name}<br>`;
+                            output += `${skill.icon} ${skill.name}\n`;
                         });
                     output += '</div>';
                     return output;
                 } else if (field === '--webdev') {
-                    let output = '<div class="output">Web Development<br>---------------<br><br>';
+                    let output = '<div class="output">Web Development:\n\n';
                     portfolioData.skills.filter(s => s.category === 'webdev')
                         .forEach(skill => {
-                            output += `${skill.icon} ${skill.name}<br>`;
+                            output += `${skill.icon} ${skill.name}\n`;
                         });
                     output += '</div>';
                     return output;
                 } else if (field === '--tools') {
-                    let output = '<div class="output">Tools<br>-----<br><br>';
+                    let output = '<div class="output">Tools:\n\n';
                     portfolioData.skills.filter(s => s.category === 'tools')
                         .forEach(skill => {
-                            output += `${skill.icon} ${skill.name}<br>`;
+                            output += `${skill.icon} ${skill.name}\n`;
                         });
                     output += '</div>';
                     return output;
                 } else if (field === '--programming-languages') {
-                    let output = '<div class="output">Programming Languages<br>--------------------<br><br>';
+                    let output = '<div class="output">Programming Languages:\n\n';
                     portfolioData.skills.filter(s => s.category === 'programming-languages')
                         .forEach(skill => {
-                            output += `${skill.icon} ${skill.name}<br>`;
+                            output += `${skill.icon} ${skill.name}\n`;
                         });
                     output += '</div>';
                     return output;
                 } else {
-                    return `<div class="output">Invalid Command. Usage: skills --[field]<br><br>Available Parameters:<br>    --data-analytics      : Data science and analytics tools<br>    --webdev             : Web development technologies<br>    --tools              : Development tools and platforms<br>    --programming-languages : Programming languages</div>`;
+                    return `<div class="output">Usage: skills --[field]
+
+Available Parameters:
+  --data-analytics         : Data science and analytics tools
+  --webdev                : Web development technologies
+  --tools                 : Development tools and platforms
+  --programming-languages : Programming languages</div>`;
                 }
             },
 
-            projects: (args) => {
-                let output = '<div class="output">Projects<br>--------<br><br>';
-                portfolioData.projects.forEach((project, index) => {
-                    output += `${index + 1}. ${project.name}<br>`;
-                    output += `   ${project.description}<br>`;
-                    output += `   <span class="link" onclick="window.open('${project.github}', '_blank')">📂 GitHub</span> `;
-                    output += `<span class="link" onclick="window.open('${project.demo}', '_blank')">🌐 Demo</span><br><br>`;
-                });
-                output += '</div>';
-                return output;
-            },
-
-            certifications: (args) => {
-                let output = '<div class="output">Certifications<br>--------------<br><br>';
-                portfolioData.certifications.forEach((cert, index) => {
-                    output += `${index + 1}. ${cert.name}<br>`;
-                    output += `   ${cert.issuer}<br>`;
-                    output += `   Issued: ${cert.date}<br>`;
-                    if (cert.credential) output += `   ID: ${cert.credential}<br>`;
-                    if (cert.link) output += `   <span class="link" onclick="window.open('${cert.link}', '_blank')">🔗 Verify</span><br>`;
-                    output += `<br>`;
-                });
-                output += '</div>';
-                return output;
-            },
-
-            contact: (args) => {
-                const data = portfolioData.contact;
-                return `
-<div class="section-content">
-    <div class="section-title">Contact Information</div>
-    <div class="output">
-        📧 Email: <span class="link" onclick="window.location.href='mailto:${data.email}'">${data.email}</span><br><br>
-        📱 Phone: ${portfolioData.about.phone}<br><br>
-        � Location: ${portfolioData.about.location}<br><br>
-        �🐙 GitHub: <span class="link" onclick="window.open('${data.github}', '_blank')">${data.github}</span><br><br>
-        💼 LinkedIn: <span class="link" onclick="window.open('${data.linkedin}', '_blank')">${data.linkedin}</span><br><br>
-        📸 Instagram: <span class="link" onclick="window.open('${data.instagram}', '_blank')">${data.instagram}</span><br><br>
-        📄 Resume: <span class="link" onclick="window.open('${data.resume}', '_blank')">View/Download</span>
-    </div>
-</div>`;
-            },
-
-            experience: () => {
-                return `
-<div class="section-content">
-    <div class="section-title">Experience</div>
-    <div class="edu-item">
-        <div style="color: #33ff66; font-weight: bold;">AI/ML Member</div>
-        <div>Microsoft Innovations Club (VITC)</div>
-        <div style="color: #8b949e;">October 2025 - Present</div>
-        <div style="margin-top: 5px;">Working on AI/ML projects and research initiatives</div>
-    </div>
-    <div class="edu-item">
-        <div style="color: #33ff66; font-weight: bold;">Technical Team Member</div>
-        <div>Mathematics Club (VITC)</div>
-        <div style="color: #8b949e;">September 2025 - Present</div>
-        <div style="margin-top: 5px;">Contributing to mathematical problem-solving and computational projects</div>
-    </div>
-    <div class="edu-item">
-        <div style="color: #33ff66; font-weight: bold;">Student House Captain</div>
-        <div>DAV Group of Schools (TNAES), Chennai</div>
-        <div style="color: #8b949e;">June 2023 - April 2024</div>
-        <div style="margin-top: 5px;">Led house activities and managed team coordination</div>
-    </div>
-</div>`;
-            },
-
-            achievements: () => {
-                return `
-<div class="section-content">
-    <div class="section-title">Achievements</div>
-    <div class="skill-item">🏆 5+ Professional Certifications in AI/ML</div>
-    <div class="skill-item">📊 87% Accuracy in Sentiment Analysis Project</div>
-    <div class="skill-item">🎓 Dual Degree Student (VIT + IIT Madras)</div>
-    <div class="skill-item">💻 3+ Open Source Projects on GitHub</div>
-    <div class="skill-item">🔬 Quantum Computing Simulation Project</div>
-</div>`;
-            },
-
-            ls: () => {
-                return `
-<div class="info">
-<strong>Available Sections:</strong><br>
-📁 about<br>
-📁 skills<br>
-📁 education<br>
-📁 projects<br>
-📁 certifications<br>
-📁 experience<br>
-📁 achievements<br>
-📁 contact<br>
-📁 social
-</div>`;
-            },
-
             education: () => {
-                let output = '<div class="section-content"><div class="section-title">Education</div>';
+                let output = '<div class="output">Education:\n\n';
                 portfolioData.education.forEach(edu => {
-                    output += `
-                    <div class="edu-item">
-                        <div style="color: #00ff00; font-weight: bold;">${edu.degree}</div>
-                        ${edu.major ? `<div>${edu.major}</div>` : ''}
-                        <div>${edu.institution}</div>
-                        <div style="color: #00cc00;">${edu.period}</div>
-                    </div>`;
+                    output += `${edu.degree}\n`;
+                    if (edu.major) output += `${edu.major}\n`;
+                    output += `${edu.institution}\n`;
+                    output += `${edu.period}\n\n`;
                 });
                 output += '</div>';
                 return output;
             },
 
             projects: () => {
-                let output = '<div class="section-content"><div class="section-title">Projects</div>';
+                let output = '<div class="output">Projects:\n\n';
                 portfolioData.projects.forEach((project, index) => {
-                    output += `
-                    <div class="project-item">
-                        <div style="color: #00ff00; font-weight: bold;">${index + 1}. ${project.name}</div>
-                        <div>${project.description}</div>
-                        <div style="margin-top: 5px;">
-                            <span class="link" onclick="window.open('${project.github}', '_blank')">📂 GitHub</span> | 
-                            <span class="link" onclick="window.open('${project.demo}', '_blank')">🌐 Live Demo</span>
-                        </div>
-                    </div>`;
+                    output += `${index + 1}. ${project.name}\n`;
+                    output += `   ${project.description}\n`;
+                    output += `   GitHub: <span class="link" onclick="window.open('${project.github}', '_blank')">${project.github}</span>\n`;
+                    output += `   Demo: <span class="link" onclick="window.open('${project.demo}', '_blank')">${project.demo}</span>\n\n`;
                 });
                 output += '</div>';
                 return output;
             },
 
             certifications: () => {
-                let output = '<div class="section-content"><div class="section-title">Certifications</div>';
+                let output = '<div class="output">Certifications:\n\n';
                 portfolioData.certifications.forEach((cert, index) => {
-                    output += `
-                    <div class="cert-item">
-                        <div style="color: #00ff00; font-weight: bold;">${index + 1}. ${cert.name}</div>
-                        <div style="color: #00cccc;">${cert.issuer}</div>
-                        <div>Issued: ${cert.date}</div>
-                        ${cert.credential ? `<div>Credential ID: ${cert.credential}</div>` : ''}
-                        ${cert.link ? `<div><span class="link" onclick="window.open('${cert.link}', '_blank')">🔗 Verify Certificate</span></div>` : ''}
-                    </div>`;
+                    output += `${index + 1}. ${cert.name}\n`;
+                    output += `   Issuer: ${cert.issuer}\n`;
+                    output += `   Date: ${cert.date}\n`;
+                    if (cert.credential) output += `   ID: ${cert.credential}\n`;
+                    if (cert.link) output += `   Verify: <span class="link" onclick="window.open('${cert.link}', '_blank')">${cert.link}</span>\n`;
+                    output += `\n`;
                 });
                 output += '</div>';
                 return output;
@@ -965,69 +863,95 @@
 
             contact: () => {
                 const data = portfolioData.contact;
-                return `
-<div class="section-content">
-    <div class="section-title">Contact Information</div>
-    <div class="output">
-        📧 Email: <span class="link" onclick="window.location.href='mailto:${data.email}'">${data.email}</span><br><br>
-        🐙 GitHub: <span class="link" onclick="window.open('${data.github}', '_blank')">${data.github}</span><br><br>
-        💼 LinkedIn: <span class="link" onclick="window.open('${data.linkedin}', '_blank')">${data.linkedin}</span><br><br>
-        📸 Instagram: <span class="link" onclick="window.open('${data.instagram}', '_blank')">${data.instagram}</span>
-    </div>
-</div>`;
+                return `<div class="output">Contact Information:
+
+Email: <span class="link" onclick="window.location.href='mailto:${data.email}'">${data.email}</span>
+Phone: ${portfolioData.about.phone}
+Location: ${portfolioData.about.location}
+
+GitHub: <span class="link" onclick="window.open('${data.github}', '_blank')">${data.github}</span>
+LinkedIn: <span class="link" onclick="window.open('${data.linkedin}', '_blank')">${data.linkedin}</span>
+Instagram: <span class="link" onclick="window.open('${data.instagram}', '_blank')">${data.instagram}</span>
+Resume: <span class="link" onclick="window.open('${data.resume}', '_blank')">${data.resume}</span></div>`;
             },
 
-            resume: () => {
-                window.open(portfolioData.contact.resume, '_blank');
-                return '<div class="success">✓ Opening resume...</div>';
+            experience: () => {
+                return `<div class="output">Experience:
+
+AI/ML Member
+Microsoft Innovations Club (VITC)
+October 2025 - Present
+Working on AI/ML projects and research initiatives
+
+Technical Team Member
+Mathematics Club (VITC)
+September 2025 - Present
+Contributing to mathematical problem-solving and computational projects
+
+Student House Captain
+DAV Group of Schools (TNAES), Chennai
+June 2023 - April 2024
+Led house activities and managed team coordination</div>`;
+            },
+
+            achievements: () => {
+                return `<div class="output">Achievements:
+
+🏆 5+ Professional Certifications in AI/ML
+📊 87% Accuracy in Sentiment Analysis Project
+🎓 Dual Degree Student (VIT + IIT Madras)
+💻 3+ Open Source Projects on GitHub
+🔬 Quantum Computing Simulation Project</div>`;
+            },
+
+            ls: () => {
+                return `<div class="info">Available Sections:
+
+about/              education/          projects/
+skills/             certifications/     experience/
+achievements/       contact/            social/</div>`;
             },
 
             social: () => {
                 const data = portfolioData.contact;
-                return `
-<div class="section-content">
-    <div class="section-title">Quick Links</div>
-    <div class="output">
-        🐙 <span class="link" onclick="window.open('${data.github}', '_blank')">GitHub</span><br>
-        💼 <span class="link" onclick="window.open('${data.linkedin}', '_blank')">LinkedIn</span><br>
-        📸 <span class="link" onclick="window.open('${data.instagram}', '_blank')">Instagram</span><br>
-        📧 <span class="link" onclick="window.location.href='mailto:${data.email}'">Email</span>
-    </div>
-</div>`;
+                return `<div class="output">Social & Quick Links:
+
+GitHub: <span class="link" onclick="window.open('${data.github}', '_blank')">${data.github}</span>
+LinkedIn: <span class="link" onclick="window.open('${data.linkedin}', '_blank')">${data.linkedin}</span>
+Instagram: <span class="link" onclick="window.open('${data.instagram}', '_blank')">${data.instagram}</span>
+Email: <span class="link" onclick="window.location.href='mailto:${data.email}'">${data.email}</span></div>`;
+            },
+
+            resume: () => {
+                window.open(portfolioData.contact.resume, '_blank');
+                return '<div class="success">Opening resume...</div>';
             },
 
             banner: () => {
-                return `
-<div class="welcome-banner">
-<pre class="ascii-art">
+                return `<div class="welcome-banner"><pre class="ascii-art">
  ____  ____   ___  ____  _   _  ___  ____  _   _ 
 |  _ \\|  _ \\ / _ \\|  _ \\| | | |/ _ \\/ ___|| | | |
 | |_) | |_) | | | | | | | |_| | | | \\___ \\| |_| |
 |  __/|  _ <| |_| | |_| |  _  | |_| |___) |  _  |
-|_|   |_| \\_\\\\___/|____/|_| |_|\\___/|____/|_| |_|
-</pre>
-    <div class="welcome-banner-title">Welcome to PRODHOSH Terminal Portfolio</div>
-    <div style="color: #8b949e; margin-top: 10px;">
-        Version 1.0.0 | Portfolio System<br>
-        Type 'help' to see all available commands<br>
-        Type 'whoami' for quick info
-    </div>
-</div>`;
+|_|   |_| \\_\\\\___/|____/|_| |_|\\___/|____/|_| |_|</pre>
+
+Welcome to PRODHOSH Terminal Portfolio
+Version 1.0.0 | Type 'help' for commands | Type 'whoami' for quick info</div>`;
             },
 
             github: () => {
                 window.open(portfolioData.contact.github, '_blank');
-                return '<div class="success">✓ Opening GitHub profile...</div>';
+                return '<div class="success">Opening GitHub profile...</div>';
             },
 
             linkedin: () => {
                 window.open(portfolioData.contact.linkedin, '_blank');
-                return '<div class="success">✓ Opening LinkedIn profile...</div>';
+                return '<div class="success">Opening LinkedIn profile...</div>';
             },
 
             email: () => {
                 window.location.href = `mailto:${portfolioData.contact.email}`;
-                return '<div class="success">✓ Opening email client...</div>';
+                return '<div class="success">Opening email client...</div>';
             },
 
             date: () => {
