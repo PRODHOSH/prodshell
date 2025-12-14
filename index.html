@@ -485,6 +485,31 @@
             }
         }
 
+        /* Theming: accent color and variants */
+        :root { --accent: #33ff66; }
+        body.theme-amber { --accent: #ffb300; }
+        body.theme-blue  { --accent: #58a6ff; }
+        body.theme-pink  { --accent: #ff6ec7; }
+
+        /* Accent overrides */
+        .prompt,
+        .success,
+        .section-title,
+        .header-title span,
+        .ascii-art,
+        .boot-logo { color: var(--accent) !important; }
+
+        .cursor { background: var(--accent) !important; }
+
+        .boot-button {
+            color: var(--accent) !important;
+            border-color: var(--accent) !important;
+        }
+        .boot-button:hover {
+            background: var(--accent) !important;
+            color: #0a0e14 !important;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .terminal-container {
@@ -783,6 +808,10 @@
 17. date
 18. echo [text]
 19. volunteering
+20. theme [green|amber|blue|pink|list]
+21. history
+22. stats
+23. search [keyword]
 
 Type 'help' to see this menu. Use 'tab' for command completion.</div>`;
             },
@@ -971,6 +1000,76 @@ Version 1.0.0 | Type 'help' for commands | Type 'whoami' for quick info</div>`;
                 return `<div class="output">${args.join(' ')}</div>`;
             },
 
+            theme: (args) => {
+                const map = { green: '', amber: 'theme-amber', blue: 'theme-blue', pink: 'theme-pink' };
+                const list = `<div class="output">Themes:\n\n- green (default)\n- amber\n- blue\n- pink\n\nUsage: theme <name></div>`;
+                if (!args || !args.length || args[0] === 'list') {
+                    return list;
+                }
+                const name = args[0].toLowerCase();
+                if (!(name in map)) {
+                    return `<div class="error">Unknown theme: ${name}<br>Try: theme list</div>`;
+                }
+                document.body.classList.remove('theme-amber','theme-blue','theme-pink');
+                if (map[name]) document.body.classList.add(map[name]);
+                return `<div class="success">Theme set to ${name}</div>`;
+            },
+
+            history: () => {
+                if (!commandHistory.length) return `<div class="info">No history yet.</div>`;
+                let out = '<div class="output">History:\n\n';
+                commandHistory.forEach((cmd, i) => { out += `${String(i+1).padStart(2,' ')}. ${cmd}\n`; });
+                out += '</div>';
+                return out;
+            },
+
+            stats: () => {
+                const count = (cat) => portfolioData.skills.filter(s => s.category === cat).length;
+                const projects = portfolioData.projects.length;
+                const certs = portfolioData.certifications.length;
+                const edu = portfolioData.education.length;
+                const vols = (portfolioData.volunteering || []).length;
+                return `<div class="output">Stats:\n- skills: ${portfolioData.skills.length} (PL: ${count('programming-languages')}, web: ${count('webdev')}, data: ${count('data-analytics')}, tools: ${count('tools')})\n- projects: ${projects}\n- certifications: ${certs}\n- education entries: ${edu}\n- volunteering roles: ${vols}</div>`;
+            },
+
+            search: (args) => {
+                const qRaw = (args || []).join(' ').trim();
+                const q = qRaw.toLowerCase();
+                if (!q) return `<div class="error">Usage: search <keyword></div>`;
+                const hits = [];
+
+                const aboutBlob = Object.values(portfolioData.about || {}).join(' ').toLowerCase();
+                if (aboutBlob.includes(q)) hits.push(`About: match found`);
+
+                portfolioData.skills.forEach(s => {
+                    const blob = `${s.name} ${s.category}`.toLowerCase();
+                    if (blob.includes(q)) hits.push(`Skill: ${s.name} (${s.category})`);
+                });
+
+                portfolioData.projects.forEach(p => {
+                    const blob = `${p.name} ${p.description}`.toLowerCase();
+                    if (blob.includes(q)) hits.push(`Project: ${p.name}`);
+                });
+
+                portfolioData.certifications.forEach(c => {
+                    const blob = `${c.name} ${c.issuer}`.toLowerCase();
+                    if (blob.includes(q)) hits.push(`Cert: ${c.name} — ${c.issuer}`);
+                });
+
+                portfolioData.education.forEach(e => {
+                    const blob = `${e.degree} ${e.major || ''} ${e.institution}`.toLowerCase();
+                    if (blob.includes(q)) hits.push(`Edu: ${e.degree} — ${e.institution}`);
+                });
+
+                (portfolioData.volunteering || []).forEach(v => {
+                    const blob = `${v.title} ${v.org} ${v.desc || ''}`.toLowerCase();
+                    if (blob.includes(q)) hits.push(`Volunteering: ${v.title} — ${v.org}`);
+                });
+
+                if (!hits.length) return `<div class="info">No matches for "${qRaw}".</div>`;
+                return `<div class="output">Search results for "${qRaw}":\n\n${hits.map(h => `- ${h}`).join('\n')}</div>`;
+            },
+
             volunteering: () => {
                 if (!portfolioData.volunteering || portfolioData.volunteering.length === 0) {
                     return `<div class="output">Volunteering:
@@ -1041,7 +1140,7 @@ Share your roles, organizations, and periods to populate this section.</div>`;
                 const result = commands.certifications(args);
                 if (result) addOutput(result, false);
             } else if (commands[command]) {
-                const result = commands[command]();
+                const result = commands[command](args);
                 if (result) addOutput(result, false);
             } else {
                 addOutput(`<div class="error">Command not found: ${command}<br>Type 'help' for available commands</div>`, false);
