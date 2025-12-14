@@ -771,19 +771,18 @@
 05. certifications
 06. experience
 07. achievements
-08. contact
-09. social
-10. resume
-11. github
-12. linkedin
-13. email
-14. ls
-15. clear
-16. banner
-17. whoami
-18. date
-19. echo [text]
-20. volunteering
+08. social
+09. resume
+10. github
+11. linkedin
+12. email
+13. ls
+14. clear
+15. banner
+16. whoami
+17. date
+18. echo [text]
+19. volunteering
 
 Type 'help' to see this menu. Use 'tab' for command completion.</div>`;
             },
@@ -891,19 +890,7 @@ Available Parameters:
                 return output;
             },
 
-            contact: () => {
-                const data = portfolioData.contact;
-                return `<div class="output">Contact Information:
-
-Email: <span class="link" onclick="window.location.href='mailto:${data.email}'">${data.email}</span>
-Phone: ${portfolioData.about.phone}
-Location: ${portfolioData.about.location}
-
-GitHub: <span class="link" onclick="window.open('${data.github}', '_blank')">${data.github}</span>
-LinkedIn: <span class="link" onclick="window.open('${data.linkedin}', '_blank')">${data.linkedin}</span>
-Instagram: <span class="link" onclick="window.open('${data.instagram}', '_blank')">${data.instagram}</span>
-Resume: <span class="link" onclick="window.open('${data.resume}', '_blank')">${data.resume}</span></div>`;
-            },
+            
 
             experience: () => {
                 return `<div class="output">Experience:
@@ -930,8 +917,7 @@ Twin Alumni (React/Next.js); profiles, feed, jobs, mentorship; scalable features
 
 about/              education/          projects/
 skills/             certifications/     experience/
-achievements/       contact/            social/
-volunteering/</div>`;
+achievements/       social/             volunteering/</div>`;
             },
 
             social: () => {
@@ -1053,9 +1039,6 @@ Share your roles, organizations, and periods to populate this section.</div>`;
                 if (result) addOutput(result, false);
             } else if (command === 'certifications' || command === 'certs') {
                 const result = commands.certifications(args);
-                if (result) addOutput(result, false);
-            } else if (command === 'contact') {
-                const result = commands.contact(args);
                 if (result) addOutput(result, false);
             } else if (commands[command]) {
                 const result = commands[command]();
