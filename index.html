@@ -241,11 +241,15 @@
         .prompt {
             color: #33ff66;
             font-weight: bold;
+            font-family: Consolas, 'Courier New', monospace;
+            letter-spacing: 0;
         }
 
         .command {
             color: #58a6ff;
             margin-left: 5px;
+            font-family: Consolas, 'Courier New', monospace;
+            letter-spacing: 0;
         }
 
         .output {
@@ -253,6 +257,8 @@
             margin-left: 0;
             white-space: pre-wrap;
             line-height: 1.6;
+            font-family: Consolas, 'Courier New', monospace;
+            letter-spacing: 0;
         }
 
         .error {
@@ -282,6 +288,8 @@
             border-radius: 0;
             border-left: none;
             white-space: pre-wrap;
+            font-family: Consolas, 'Courier New', monospace;
+            letter-spacing: 0;
         }
 
         /* Terminal Input Area */
@@ -305,10 +313,11 @@
             border: none;
             outline: none;
             color: #c9d1d9;
-            font-family: 'Courier New', monospace;
+            font-family: Consolas, 'Courier New', monospace;
             font-size: 0.95rem;
             margin-left: 10px;
             caret-color: #33ff66;
+            letter-spacing: 0;
         }
 
         .cursor {
@@ -624,6 +633,26 @@
                 location: "Chennai, Tamil Nadu, India",
                 phone: "+91 XXXXXXXXXX"
             },
+            volunteering: [
+                {
+                    title: "Technical Team Member",
+                    org: "Mathematics Club, VIT Chennai",
+                    period: "Sept 2025 – Present",
+                    desc: "Built and maintain club website and infra; support 1,000+ students"
+                },
+                {
+                    title: "AI/ML Member",
+                    org: "Microsoft Innovations Club, VIT Chennai",
+                    period: "Oct 2025 – Present",
+                    desc: "Contribute to AI/ML projects and workshops; explore ML applications"
+                },
+                {
+                    title: "Internshala Student Partner",
+                    org: "Internshala",
+                    period: "Nov 2025 – Present",
+                    desc: "Lead campus outreach and campaigns; promote internships to 500+ students"
+                }
+            ],
             skills: [
                 // Programming Languages
                 { name: "Python", icon: "🐍", category: "programming-languages" },
@@ -728,7 +757,7 @@
                 linkedin: "https://www.linkedin.com/in/prodhoshvs/",
                 instagram: "https://www.instagram.com/itzprodhosh/",
                 email: "prodhosh3@gmail.com",
-                resume: "Prodhosh_new_Resume.pdf"
+                resume: "Prodhosh_new_resume.pdf"
             }
         };
 
@@ -754,14 +783,14 @@
 17. whoami
 18. date
 19. echo [text]
+20. volunteering
 
 Type 'help' to see this menu. Use 'tab' for command completion.</div>`;
             },
 
             whoami: () => {
                 return `<div class="output">PRODHOSH V S
-First-Year CSE Student @ VITC | BS Data Science @ IIT Madras
-AI/ML Member at Microsoft Innovations Club (VITC)
+Freshman at VIT | AI/ML | Intern at Y-SoC | Internshala Student Partner
 Open to internship opportunities
 Location: Chennai, Tamil Nadu, India</div>`;
             },
@@ -879,20 +908,11 @@ Resume: <span class="link" onclick="window.open('${data.resume}', '_blank')">${d
             experience: () => {
                 return `<div class="output">Experience:
 
-AI/ML Member
-Microsoft Innovations Club (VITC)
-October 2025 - Present
-Working on AI/ML projects and research initiatives
+Website Manager — Nallamala House, IIT Madras (Dec 2025–Present)
+React/Next.js + Tailwind; site for 500+ members; CMS features; performance optimizations
 
-Technical Team Member
-Mathematics Club (VITC)
-September 2025 - Present
-Contributing to mathematical problem-solving and computational projects
-
-Student House Captain
-DAV Group of Schools (TNAES), Chennai
-June 2023 - April 2024
-Led house activities and managed team coordination</div>`;
+Open Source Contributor — Youth Season of Code (Nov 2025–Present)
+Twin Alumni (React/Next.js); profiles, feed, jobs, mentorship; scalable features</div>`;
             },
 
             achievements: () => {
@@ -910,7 +930,8 @@ Led house activities and managed team coordination</div>`;
 
 about/              education/          projects/
 skills/             certifications/     experience/
-achievements/       contact/            social/</div>`;
+achievements/       contact/            social/
+volunteering/</div>`;
             },
 
             social: () => {
@@ -962,6 +983,25 @@ Version 1.0.0 | Type 'help' for commands | Type 'whoami' for quick info</div>`;
 
             echo: (args) => {
                 return `<div class="output">${args.join(' ')}</div>`;
+            },
+
+            volunteering: () => {
+                if (!portfolioData.volunteering || portfolioData.volunteering.length === 0) {
+                    return `<div class="output">Volunteering:
+
+No volunteering entries added yet.
+Share your roles, organizations, and periods to populate this section.</div>`;
+                }
+                let output = '<div class="output">Volunteering:\n\n';
+                portfolioData.volunteering.forEach((role, index) => {
+                    output += `${index + 1}. ${role.title}\n`;
+                    if (role.org) output += `   Organization: ${role.org}\n`;
+                    if (role.period) output += `   Period: ${role.period}\n`;
+                    if (role.desc) output += `   ${role.desc}\n`;
+                    output += `\n`;
+                });
+                output += '</div>';
+                return output;
             },
 
             clear: () => {
