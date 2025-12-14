@@ -17,7 +17,7 @@
 
 ## 🌌 Live Demo
 
-- Visit the cyber terminal: https://prodhosh.github.io/whoisprodhosh_portfolio/
+- Visit the cyber terminal: https://prodhosh.github.io/prodshell/
 
 ---
 
@@ -131,6 +131,7 @@ portfolio_2/
 <div align="center">
   <sub>💡 Powered by neon accents, matrix rain, and curiosity.</sub>
 </div>
+
 
 
 
